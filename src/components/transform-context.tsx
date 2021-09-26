@@ -142,27 +142,29 @@ class TransformContext extends Component<
   };
 
   handleInitialize = (): void => {
-    const { centerOnInit } = this.setup;
+    const { centerOnInit, centerXOnInit, centerYOnInit } = this.setup;
+    const centerX = centerOnInit || centerXOnInit;
+    const centerY = centerOnInit || centerYOnInit;
 
     this.applyTransformation();
     this.forceUpdate();
 
-    if (centerOnInit) {
+    if (centerX || centerY) {
       // this has to be redone once the right solution is found
       // problem is - we need to execute it after mounted component specify it's height / width, images are fetched async so it's tricky
       setTimeout(() => {
         if (this.mounted) {
-          this.setCenter();
+          this.setCenter(centerX, centerY);
         }
       }, 50);
       setTimeout(() => {
         if (this.mounted) {
-          this.setCenter();
+          this.setCenter(centerX, centerY);
         }
       }, 100);
       setTimeout(() => {
         if (this.mounted) {
-          this.setCenter();
+          this.setCenter(centerX, centerY);
         }
       }, 200);
     }
@@ -421,7 +423,7 @@ class TransformContext extends Component<
     }
   };
 
-  setCenter = (): void => {
+  setCenter = (x = true, y = true): void => {
     if (this.wrapperComponent && this.contentComponent) {
       const targetState = getCenterPosition(
         this.transformState.scale,
@@ -430,8 +432,8 @@ class TransformContext extends Component<
       );
       this.setTransformState(
         targetState.scale,
-        targetState.positionX,
-        targetState.positionY,
+        x ? targetState.positionX : this.transformState.positionX,
+        y ? targetState.positionY : this.transformState.positionY,
       );
     }
   };

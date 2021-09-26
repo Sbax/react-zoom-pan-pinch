@@ -51,6 +51,8 @@ export type ReactZoomPanPinchProps = {
   limitToBounds?: boolean;
   centerZoomedOut?: boolean;
   centerOnInit?: boolean;
+  centerYOnInit?: false,
+  centerXOnInit?: false,
   wheel?: {
     step?: number;
     disabled?: boolean;

@@ -153,6 +153,18 @@ export const wrapperPropsTable: ComponentProps = {
     description:
       "When the prop is set to truth the content component will get centered based on the size of it's wrapper.",
   },
+  centerYOnInit: {
+    type: ["boolean"],
+    defaultValue: String(initialSetup.centerYOnInit),
+    description:
+      "When the prop is set to truth the content component will get horizontally centered based on the size of it's wrapper.",
+  },
+  centerXOnInit: {
+    type: ["boolean"],
+    defaultValue: String(initialSetup.centerYOnInit),
+    description:
+      "When the prop is set to truth the content component will get vertically centered based on the size of it's wrapper.",
+  },
   wheel: {
     wheel: {
       type: [""],
